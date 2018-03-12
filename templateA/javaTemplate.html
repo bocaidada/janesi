@@ -1,0 +1,493 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/mui.min.css" rel="stylesheet" />
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/iconfont.css" rel="stylesheet" />
+		<!--<link href="./iconfont.css" rel="stylesheet" />-->
+		<!--#if(#contentType=='ARTICLE')-->
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/imgView.css" rel="stylesheet" />
+		<!--#end-->
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/detail.css" rel="stylesheet" />
+		<!--<link href="./detail.css" rel="stylesheet" />-->
+		<style type="text/css">
+			.shan {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 11111;
+				background: #fff;
+				text-align: center;
+				line-height: 4.5rem;
+				transition: .5s;
+			}
+			
+			.article,
+			.remarkBox {
+				width: 100%;
+				padding: 0 0.3rem;
+			}
+			
+			
+			.shan>img {
+				width: 1.2rem;
+			}
+			
+			.article_love,
+			.article_label {
+				opacity: 0;
+				transition: .8s;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		
+
+		<div class="article" id="article">
+
+			<div class="article_tittle">
+				$!{content.title}
+			</div>
+			<div class="article_author">
+				<span class="au_origin">$!{content.source}</span>
+				<div class="au_read">
+					<span class="num">$!{scanCount}</span>
+					<span>次阅读</span>
+				</div>
+			</div>
+
+			<div class="article_content" id="content">
+				$!{content.body}
+				<!--<div class="shan">
+					<img src="http://yun.janesi.net/web-test/zhiqu-web/img/zhuan.gif" />
+				</div>-->
+			</div>
+
+			<div class="article_love">
+				<div class="but" id="hit">
+					<span class="mui-icon iconfont icon">&#xe60c;</span>
+					<span class="pre">点赞</span>
+					<span>$!{likeCount}</span>
+				</div>
+				<div class="but" id="collect" style="transition: all .5s;">
+					<span class="mui-icon iconfont icon">&#xe607;</span>
+					<span>收藏</span>
+				</div>
+			</div>
+
+			<div class="article_label">
+				<div class="name">标签</div>
+				<div class="reg">
+				#foreach ($item in $contentTags)
+					if($!{item})
+						<button type="button">$item</button>
+					#end
+				#end	
+					<span id="inform">举报</span>
+				</div>
+			</div>
+			<!--相关链接-->
+			<ul class="recommend mui-list-unstyled" id="list">
+				#foreach( $key in $recommendList )
+					#if(${key.contentType} == 'ARTICLE')
+						#if(${key.imageSize}=='0')
+							<li listUrl=${key.detailUrl}>
+								<div class="three_tit">
+									<span>${key.title}</span>
+								</div>
+								<div class="correlation">
+									<div class="pho">
+										<span>$!{key.source}</span>
+									</div>
+									<div class="read">
+										<span>${key.scanCount}</span>
+										<span>次阅读</span>
+									</div>
+								</div>
+							</li>
+						#elseif(${key.imageSize}<'3')
+							<li listUrl=${key.detailUrl}>
+								<div class="one_top">
+									<div class="one_tit">
+										<div class="font mui-ellipsis-2">${key.title}</div>
+										<div class="correlation">
+											<div class="pho">
+												<!--<a href="javascript:;">
+													<img src="../img/4.jpg" alt="" />
+												</a>-->
+												<span>$!{key.source}</span>
+											</div>
+											<div class="read">
+												<span>${key.scanCount}</span>
+												<span>次阅读</span>
+											</div>
+										</div>
+									</div>
+									<div class="thurmd" style="backgroundImage:"+ ${key.images[0]}+";">
+										<!--<img src="../img/4.jpg" alt="" />-->
+									</div>
+								</div>
+							</li>	
+						#else
+							<li listUrl=${key.detailUrl}>
+								<div class="three_tit">
+									<span>${key.title}</span>
+								</div>
+								<div class="three_imgs">
+									<div style="backgroundImage:"+ ${key.images[0]}+";"></div>
+									<div style="backgroundImage:"+ ${key.images[1]}+";"></div>
+									<div style="backgroundImage:"+ ${key.images[2]}+";"></div>
+								</div>
+			
+								<div class="correlation">
+									<div class="pho">
+										<!--<a href="javascript:;">
+											<img src="../img/4.jpg" alt="" />
+										</a>-->
+										<span>$!{key.source}</span>
+									</div>
+									<div class="read">
+										<span>${key.scanCount}</span>
+										<span>次阅读</span>
+									</div>
+								</div>
+							</li>
+						#end
+					#else
+						<li listUrl=${key.detailUrl}>
+							<div class="three_tit">
+								<span>${key.title}</span>
+							</div>
+							<div class="videoBox">
+								<div class="poster">
+									<div class="top">分享至</div>
+									<div class="bott">
+										<div>
+											<div class="shares" name="微信">
+												<img src="../img/wechat.png" alt="" />
+											</div>
+											<span>微信</span>
+										</div>
+										<div>
+											<div class="shares" name="QQ">
+												<img src="../img/qq.png" alt="" />
+											</div>
+											<span>QQ</span>
+										</div>
+										<div>
+											<div class="shares" name="朋友圈">
+												<img src="../img/friendcircle.png" alt="" />
+											</div>
+											<span>朋友圈</span>
+										</div>
+										<div>
+											<div class="shares" name="空间">
+												<img src="../img/room.png" alt="" />
+											</div>
+											<span>QQ空间</span>
+										</div>
+									</div>
+									<div class="footer">
+										<div class="foo_left">
+											<span class="iconfont" style="font-size: 0.3rem;">&#xe61a;</span>
+											<span class="replay">重播</span>
+										</div>
+										<div class="foo_right">
+											${key.time}
+										</div>
+									</div>
+								</div>
+								<video class="myvideo" controls src="'+${key.videoUrl}+'" poster="'+${key.videoCutUrl}+'" webkit-playsinline></video>
+							</div>
+		
+							<div class="correlation">
+								<div class="pho">
+									<!--<a href="javascript:;">
+										<img src="../img/4.jpg" alt="" />
+									</a>-->
+									<span>${key.source}</span>
+								</div>
+								<div class="read">
+									<span>${key.scanCount}</span>
+									<span>次播放</span>
+								</div>
+							</div>
+						</li>
+					#end
+				#end
+			</ul>
+			
+			<div class="remark" id="remark">
+				<div class="hotRemark">热门评论</div>
+				<ul class="remarkList mui-list-unstyled hotRemarkList">
+					#foreach( $item in $hotRemarkList )
+						<li>
+						<div class="listLeft">
+							<div>
+								<img src=${item.userPhotoUrl} alt="" />
+							</div>
+						</div>
+						<div class="ListRight">
+							<div class="ListRightTop">
+								<div class="user">${item.userPhotoName}</div>
+								<div class="remarkHit" flag='true'>
+									<span class="iconfont">&#xe60c;</span>
+									<span>${item.hitCount}</span>
+								</div>
+							</div>
+							<div class="remarkCon">
+								${item.remarkCon}
+							</div>
+							<div class="ListRightBot">
+								<div class="pubdate">
+									<span>${item.publishTime}</span>
+									<span>${item.unit}前</span>
+								</div>
+								<div class="replyNum">
+									<span>$!{item.replyNum}</span>
+									<span>回复</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					#end
+				</ul>
+
+				<div class="hotRemark">最新评论</div>
+				<ul class="remarkList mui-list-unstyled newRemarkList" id="newRemarkList">
+					<li>
+						<div class="listLeft">
+							<div>
+								<img src="../img/4.jpg" alt="" />
+							</div>
+						</div>
+						<div class="ListRight">
+							<div class="ListRightTop">
+								<div class="user">路人甲</div>
+								<div class="remarkHit" flag='true'>
+									<span class="iconfont">&#xe60c;</span>
+									<span>321</span>
+								</div>
+							</div>
+							<div class="remarkCon">
+								阿斯顿法国红酒节快乐阿斯顿法国红酒节快乐阿斯顿法国红快乐阿斯顿法国红快乐阿斯顿法国红
+							</div>
+							<div class="ListRightBot">
+								<div class="pubdate">
+									<span>20</span>
+									<span>分钟前</span>
+								</div>
+								<div class="replyNum">
+									<span>10</span>
+									<span>回复</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			
+
+			<div style="height:0.98rem; width: 100%;"></div>
+		</div>
+		
+		
+		<!--底部评论-->
+		<div class="bottRemark">
+			<div class="tab_share" id="tab_share">
+				<div class="shar_left" id="shar_left">
+					<input type="text" name="remarkCon" id="" value="写评论..." placeholder="" />
+					<span class="iconfont" id="inHit">&#xe61f;</span>
+				</div>
+				<div class="shar_right">
+					<div class="iconfont botRek">
+						&#xe619;
+						<span class="remarkNum">2</span>
+					</div>
+					<div class="iconfont botColl" id="botColl">&#xe61c;</div>
+					<div class="botShar">
+						<a href="#share" class="iconfont">&#xe61e;</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab_share_search" id="tab_share_search">
+				<div class="shar_left" id="shar_left">
+					<input type="text" name="remarkCon" id="remarkCon" placeholder="优质评论将会被优先展示" autofocus/> 
+				</div>
+				<div class="shar_right" id="shar_right">
+					发布
+				</div>
+			</div>
+		</div>
+		
+		<!--分享-->
+		<div id="share" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="mui-table-view aa mui-table-view-cell">
+				<div class="top">分享至</div>
+				<div class="bott">
+					<div>
+						<div class="shares" name="weChat">
+							<img src="http://yun.janesi.net/web-test/zhiqu-web/img/wechat.png" alt="" />
+						</div>
+						<span>微信</span>
+					</div>
+					<div>
+						<div class="shares" name="QQ">
+							<img src="http://yun.janesi.net/web-test/zhiqu-web/img/qq.png" alt="" />
+						</div>
+						<span>QQ</span>
+					</div>
+					<div>
+						<div class="shares" name="friendCicle">
+							<img src="http://yun.janesi.net/web-test/zhiqu-web/img/friendcircle.png" alt="" />
+						</div>
+						<span>朋友圈</span>
+					</div>
+					<div>
+						<div class="shares" name="qqZone">
+							<img src="http://yun.janesi.net/web-test/zhiqu-web/img/room.png" alt="" />
+						</div>
+						<span>QQ空间</span>
+					</div>
+				</div>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#forward"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/mui.js"></script>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/rem.js"></script>
+		<!--<script src="http://yun.janesi.net/web-test/zhiqu-web/js/mv.js"></script>-->
+		<script src="./mv.js"></script>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/jquery-2.1.1.min.js"></script>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/mui.zoom.js"></script>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/mui.previewimage.js"></script>
+		<script src="./detail.js"></script>
+		<!--<script src="./detail.js"></script>-->
+		<script type="text/javascript">
+			mui.previewImage(); //启动图片快捷查看
+			mui.init();
+			
+			var flag = true,
+				flag1 = true,
+				flag2 = true,
+				flag3 = true;
+
+			document.querySelector('.article_love').style.opacity = '1';
+					document.querySelector('.article_label').style.opacity = '1';
+			
+			setTimeout(function() {
+//				document.querySelector('.shan').style.display = 'none';
+				document.querySelector('.article_love').style.opacity = '1';
+					document.querySelector('.article_label').style.opacity = '1';
+			}, 800);
+
+			mui('header').on('tap', '#back', function() {
+				window.webkit.messageHandlers.backPre.postMessage("return"); //注意 这里一定要输入参数,哪怕是null,不然oc收不到消息
+			});
+
+			document.body.addEventListener('swiperight', function(e) {
+				if(Math.abs(e.detail.angle) < 25) {
+					window.webkit.messageHandlers.backPre.postMessage("return"); //注意 这里一定要输入参数,哪怕是null,不然oc收不到消息
+				}
+			});
+			
+							//底部评论提示
+				mui('.shar_right').on('tap', '.botRek', function() {
+
+					var top=document.getElementById('remark').offsetTop;
+					if(flag3){
+						$('#article').animate({'scrollTop':top})
+						flag3=!flag3;
+					}else{
+						$('#article').animate({'scrollTop':0})
+						flag3=!flag3;
+					}
+
+					
+				})
+
+			
+
+			var hit = document.getElementById('hit');
+			var collect = document.getElementById('collect');
+			//var url = 'https://mock.mmcai.cn/mock/5a6195f12b68750fbe1adafe/index/listdetial';
+
+			var qq, weChat;
+
+			var shareRule = function(q, w) {
+				qq = q;
+				weChat = w;
+			};
+
+//			var url = "http://yun.janesi.net/web-test/zhiqu-web/templete/article.html?apiVersion=V0.1&apiTime=1520238927239&appId=10010&userId=10&udid=6B322367-9453-4951-B9C1-1E3D9DE3C7CC&deviceId=10&contentId=46bc136101904d9389c9b8a7142babf0&title=%E6%95%99%E8%82%B2%E9%83%A8%EF%BC%9A%E8%B6%B3%E7%90%83%E6%93%8D%E6%97%A2%E4%B8%8D%E6%98%AF%E6%A0%A1%E5%9B%AD%E8%B6%B3%E7%90%83%20%E4%B9%9F%E4%B8%8D%E6%98%AF%E5%BD%A2%E5%BC%8F%E4%B8%BB%E4%B9%89&source=%20&scanCount=1&contentType=ARTICLE"	
+			url = url.split('?')[1];
+			
+			//			var url = location.href.split('?')[1];
+			
+			var listUrl = url.split('&');
+			var arr = [];
+			for(var i = 0; i < listUrl.length; i++) {
+				arr.push(listUrl[i].split('='));
+			};
+
+			document.querySelector('.article_tittle').innerHTML = decodeURIComponent(arr[7][1]);
+			document.querySelector('.au_origin').innerHTML = decodeURIComponent(arr[8][1]);
+			document.querySelector('.au_read>.num').innerHTML = arr[9][1];
+
+			url = 'http://zq.janesi.net/content/getContentDetail?' + url;
+
+			mui.ajax(url, {
+				type: 'get',
+				dataType: 'json',
+				success: function(e) {
+					console.log(e.data)
+					hit.children[2].innerHTML = e.data.likeCount;
+					if(e.data.orNotLike) {
+						hit.classList.add('hit_but_hot');
+						hit.children[1].innerHTML = '已赞';
+						flag = false;
+					}
+					if(e.data.orNotCollect) {
+						collect.classList.add('but_hot');
+						collect.children[1].innerHTML = '已收藏';
+						flag1 = false;
+					}
+
+					//文章内容
+					document.querySelector('.article_tittle').innerHTML = e.data.content.title;
+					document.querySelector('.au_origin').innerHTML = e.data.content.source;
+					document.querySelector('.au_read>.num').innerHTML = e.data.scanCount;
+					document.getElementById('content').innerHTML = e.data.content.body;
+					//遍历标签
+					var tags = e.data.content.tags;
+					for(var i = 0; i < tags.length; i++) {
+						var btn = document.createElement('button');
+						btn.setAttribute('type', 'button');
+						btn.innerHTML = tags[i];
+						var dv = document.getElementsByClassName('reg')[0];
+						var inform = document.getElementById('inform');
+						dv.appendChild(btn);
+					}
+					document.querySelector('.article_love').style.opacity = '1';
+					document.querySelector('.article_label').style.opacity = '1';
+					getList(e);
+				}
+			});
+		</script>
+	</body>
+
+</html>

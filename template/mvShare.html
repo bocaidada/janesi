@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name='apple-itunes-app' content='app-id=477927812'>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/imgView.css" rel="stylesheet" />
+		<link href="../css/detail.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav link" style="bottom: 0; top: inherit;">
+					<div class="img_box"><img src="../img/appLogo.jpg" alt="" /></div>
+					<div class="tit">知趣</div>
+					<div class="open">
+						<a href="https://itunes.apple.com/cn/app/id477927812" id="openApp">打开</a>
+					</div>
+				</header>
+                <div class="videoBox">
+					<div class="poster">
+						<div class="top">分享至</div>
+						<div class="bott">
+							<div>
+								<div class="shares" name="微信">
+									<img src="../img/wechat.png" alt="" />
+								</div>
+								<span>微信</span>
+							</div>
+							<div>
+								<div class="shares" name="QQ">
+									<img src="../img/qq.png" alt="" />
+								</div>
+								<span>QQ</span>
+							</div>
+							<div>
+								<div class="shares" name="朋友圈">
+									<img src="../img/friendcircle.png" alt="" />
+								</div>
+								<span>朋友圈</span>
+							</div>
+							<div>
+								<div class="shares" name="空间">
+									<img src="../img/room.png" alt="" />
+								</div>
+								<span>QQ空间</span>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="foo_left">
+								<span class="iconfont" style="font-size: 0.3rem;">&#xe61a;</span>
+								<span class="replay">重播</span>
+							</div>
+							<div class="foo_right">
+								3.45
+							</div>
+						</div>
+					</div>
+					<video class="myvideo" controls="controls"  src="https://qiniu-video5.vmoviercdn.com/5a55ccee13b1a.mp4" poster="https://cs.vmovier.com/Uploads/cover/2018-01-10/5a55cbc871266_cut.jpeg@600w_400h_1e_1c.jpg" webkit-playsinline></video>
+				</div>
+				<div class="timg">
+						<div class="timgBox">
+							<img src="../img/zan.png" alt="" />
+						</div>
+					</div>
+				<div id="offCanvasContentScroll" class="mui-scroll-wrapper mui-content" style="padding-top: 0;">
+					
+					<div class="mui-scroll ">
+						<div class="article">
+
+							<div class="article_tittle mv_tittle">
+								那所勇敢捍卫过个尊严的香港学校，背景不太简单！
+							</div>
+							<div class="article_author">
+								<!--<a href="javascript:;" class="us_photo">
+									<img src="../img/4.jpg" alt="" />
+								</a>-->
+								<span class="au_origin">知乎</span>
+								<div class="au_read">
+									<span class="num">100</span>
+									<span>次阅读</span>
+								</div>
+							</div>
+							
+							<div style="" class="cue">
+								知趣更知你<br />
+								知趣APP，精彩不断...
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/rem.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//侧滑容器父节点
+			var offCanvasWrapper = mui('#offCanvasWrapper');
+			//主界面容器
+			var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
+			//菜单容器
+			var offCanvasSide = document.getElementById("offCanvasSide");
+
+			//移动效果是否为整体移动
+			var moveTogether = false;
+
+			//主页面区域滚动事件
+			mui('#offCanvasContentScroll').scroll({
+				 indicators: false
+			})
+			
+			//flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			mui('.mui-scroll-wrapper').scroll({deceleration:0.005});
+
+			//内容加载
+			mui.ajax({
+				url: 'https://mock.mmcai.cn/mock/5a530bdd2b68750fbe1ac4eb/index/listDetail',
+				dataType: 'json',
+				type: 'get',
+				success: function(e) {
+					var myVideo = document.getElementById('myvideo');
+					//					myVideo.setAttribute('src',e.data.videoUrl)
+					//					myVideo.setAttribute('poster',e.data.imgUrl)
+					document.querySelector('.mv_tittle').innerHTML = e.data[0].title;
+					document.querySelector('.au_origin').innerHTML = e.data[0].come;
+					document.querySelector('.au_read>.num').innerHTML = e.data[0].number;
+					var h=document.querySelector('.videoBox').offsetHeight
+//                  alert(h)
+					var box=document.querySelector('#offCanvasContentScroll')
+					box.style.top=h+'px'; 
+				}
+			});
+			
+			mui.plusReady(
+				mui('.article_content').on('tap', 'img', function() {
+					this.setAttribute('data-preview-src', '')
+					this.setAttribute('data-preview-group', '1')
+				}),
+				mui('.link').on('tap','#openApp',function(e){ 
+						window.location.href = "jiansi://";   
+						window.setTimeout(function(){  
+							location.href='https://itunes.apple.com/cn/app/id477927812'
+						},3000) 
+				}) 
+			)
+		</script>
+	</body>
+
+</html>

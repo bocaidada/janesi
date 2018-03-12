@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选择推荐</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/love.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="mui-text-center head">
+				<p>开启个性化定制</p>
+				<p>你的兴趣频道</p>
+			</div>
+			<!--<div class="mui-scroll-wrapper">
+	
+				<div class="mui-scroll">
+				
+				<!--这里放置真实显示的DOM内容-->
+				
+				<!--</div>-->
+			
+			<!--</div>-->
+			<ul class="love_con mui-list-unstyled">
+				<li>财经</li>
+				<li>视频</li>
+				<li>互联网</li>
+				<li>手游</li>
+	            <li>体育</li>
+	            <li>财经</li>
+				<li>视频</li>
+				<li>互联网</li>
+				<li>手游</li>
+	            <li>体育</li>
+	            <li>财经</li>
+				<li>视频</li>
+				<li>互联网</li>
+				<li>手游</li>
+	            <li>体育</li>
+	            <li>音乐</li>
+			</ul>
+		    <a class="but">
+		    	<button type="button">完成</button>
+		    </a>
+		    <p class="mui-text-center love-fot">已有账号？微信登录</p>
+		    
+		    <div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#" style="color: #FF3B30;">至少选择三个</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#delete"><b>取消</b></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/rem.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+		mui.plusReady(
+			mui('.love_con').on('tap','li', function() {
+                this.classList.toggle('love_hot')
+			}),
+			mui('.but').on('tap','button',function(){
+					var leng=mui('.love_con>.love_hot').length
+					if (leng<3) {
+							mui.alert('最少选择三个','提示', function() {
+						});
+					}else{
+						mui.openWindow({
+							url:'article.html'
+						})
+					}
+			})
+		)
+	</script>	
+</html>

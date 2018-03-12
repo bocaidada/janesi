@@ -1,0 +1,45 @@
+{
+	"template/love.html": {
+		"refer": [
+			"template/report.html"
+		],
+		"resources": []
+	},
+	"index.html": {
+		"refer": [
+			"template/love.html",
+			"template/txtShare.html",
+			"template/article.html",
+			"template/txtDetail.html"
+		],
+		"resources": []
+	},
+	"template/report.html": {
+		"refer": [
+			"template/demo.html",
+			"template/details.html"
+		],
+		"resources": []
+	},
+	"template/article.html": {
+		"refer": [
+			"template/mv.html"
+		]
+	},
+	"template/mv.html": {
+		"refer": [
+			"template/article.html"
+		]
+	},
+	"template/txtDetail.html": {
+		"refer": [
+			"template/newMv.html",
+			"template/replay.html"
+		]
+	},
+	"template/replay.html": {
+		"refer": [
+			"template/txtDetail.html"
+		]
+	}
+}

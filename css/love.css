@@ -1,0 +1,79 @@
+body,
+.mui-content {
+	background: #fff;
+}
+
+.head {
+	margin-top: 0.44rem;
+	width: 100%;
+	padding: 0.6rem 0;
+}
+
+.head>p {
+	color: #333;
+}
+
+.head>p:first-child {
+	font-size: 0.36rem;
+	margin-bottom: 0.3rem;
+	font-weight: bold;
+}
+
+.head>p:last-child {
+	font-size: 0.32rem;
+	font-weight: normal;
+}
+
+.love_con {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0.2rem 0.8rem;
+}
+
+.love_con>li {
+	width: 1.2rem;
+	height: 1.2rem;
+	background: #dfdfdf;
+	color: #333;
+	text-align: center;
+	line-height: 1.2rem;
+	font-size: 0.28rem;
+	border-radius: 50%;
+	margin-right: 0.2rem;
+	margin-bottom: 0.4rem;
+}
+
+.love_con>.love_hot {
+	background: #333;
+	color: #fff;
+}
+
+.but {
+	width: 100%;
+	display: block;
+	padding: 0.3rem 0.75rem;
+	margin-top: 0.3rem;
+}
+
+.but>button {
+	width: 100%;
+	height: 0.8rem;
+	background: #ffd848;
+	border-radius: 0.1rem;
+	color: #333;
+	font-size: 0.32rem;
+	letter-spacing: 0.05rem;
+	border: none;
+}
+
+.love-fot {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 0.28rem;
+	color: #333;
+}

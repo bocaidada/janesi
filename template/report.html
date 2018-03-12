@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>举报内容</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/report.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #333;"></a>
+		    <h1 class="mui-title">举报</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="re-list mui-list-unstyled">
+				<li>
+					<span>广告</span>
+					<span></span>
+				</li>
+				<li>
+					<span>低俗色情</span>
+					<span></span>
+				</li>
+				<li>
+					<span>违法犯罪</span>
+					<span></span>
+				</li>
+				<li>
+					<span>标题夸张</span>
+					<span></span>
+				</li>
+				<li>
+					<span>内容质量差</span>
+					<span></span>
+				</li>
+				<li>
+					<span>与事实不符</span>
+					<span></span>
+				</li>
+				<li>
+					<span>疑似抄袭</span>
+					<span></span>
+				</li>
+			</ul>
+			
+			<div class="re_but">
+				<button type="button" id="butt">提交</button>
+			</div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/rem.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		    mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui.plusReady(
+				mui('.re-list').on('tap','li',function(){
+					this.children[1].classList.toggle('hit');
+					this.classList.toggle('aa');
+				}),
+				document.getElementById('butt').addEventListener('tap',function(){
+					var str='';
+					mui('.aa').each(function(index,ele){
+						var con=this.children[0].innerHTML;
+                        str+=con+',' ;
+					})
+					str=str.slice(0,-1)
+//					alert(str);
+         			mui.alert("您举报的内容是："+str,"举报成功！",function(){
+         				mui.openWindow({
+							url:'parent.html',
+							id:'',
+							extras:{
+	                      	  name:''
+	                      }
+						})
+         			})
+					
+				})
+			)
+		</script>
+	</body>
+	
+</html>

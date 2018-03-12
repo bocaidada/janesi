@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name='apple-itunes-app' content='app-id=1332557222'>
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/mui.min.css" rel="stylesheet" />
+		<link href="http://yun.janesi.net/web-test/zhiqu-web/css/iconfont.css" rel="stylesheet" />
+		<style>
+			.box{
+				width: 100%;
+				position: relative;
+			}
+			.box>img{
+				width: 100%;
+			}
+			.but{
+				width: 25%;
+				height: 0.68rem;
+				position: absolute;
+				top: 5.5rem;
+				left: 50%;
+				border-radius:0.15rem;
+				transform: translateX(-50%);
+				box-shadow: 0.01rem 0.01rem 0.01rem rgba(0,0,0,.2);
+				overflow: hidden;
+			}
+			.but>img{
+				width: 100%;
+			}
+			.mui-scroll{
+				overflow: hidden;
+			}
+			body,.mui-scroll-wrapper,.mui-bar,.mui-scroll{
+				background: #fff;
+			}
+		</style>
+	</head>
+	
+	
+    
+	<body>
+		<div class="box">
+		    <img src="http://yun.janesi.net/web-test/zhiqu-web/img/sh.jpg" alt="" />
+		</div>
+		<div class="but">
+		    <img src="http://yun.janesi.net/web-test/zhiqu-web/img/sh1.png" alt="" />
+		</div>
+
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/mui.min.js"></script>
+		<script src="http://yun.janesi.net/web-test/zhiqu-web/js/rem.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.005,
+				indicators: false
+			});
+			
+			mui.plusReady(
+				document.querySelector('.but').addEventListener('tap',function(){
+					location.href='https://itunes.apple.com/cn/app/id1332557222'
+				}),
+				//点击左上角的返回，调用原生的返回上一页
+				mui('header').on('tap', '#back', function() {
+						//调用iOSMethod方法,发送"我要调用ios的方法"的消息
+					window.webkit.messageHandlers.backPre.postMessage("return"); //注意 这里一定要输入参数,哪怕是null,不然oc收不到消息
+				})
+			)
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/iconfont.css" rel="stylesheet" />
+		<link href="../css/imgView.css" rel="stylesheet" />
+		<link href="../css/detail.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon iconfont mui-pull-left">&#xe604;</a>
+			<h1 class="mui-title">详情页</h1>
+			<a class="iconfont  mui-pull-right" href="#share" style="font-size: 0.45rem;color: #333;">&#xe61b;</a>
+		</header>
+		<!--<div>
+			
+		</div>-->
+		<div style="height:1.2rem; width: 100%;"></div>
+		<div class="tab_share">
+			<div class="shar_left">分享至</div>
+			<div class="shar_right bott">
+				<div name="微信" class="shares"> 
+					<div>
+						<img src="../img/wechat.png" alt="" /><br />
+					</div>
+					<p>微信</p>
+				</div>
+				<div name="QQ" class="shares">
+					<div>
+						<img src="../img/qq.png" alt="" /><br />
+					</div>
+					<p>QQ</p>
+				</div>
+				<div name="空间" class="shares">
+					<div>
+						<img src="../img/room.png" alt="" /><br />
+					</div>
+					<p>空间</p>
+				</div>
+				<div name="朋友圈" class="shares">
+					<div>
+						<img src="../img/friendcircle.png" alt="" /><br />
+					</div>
+					<p>朋友圈</p>
+				</div>
+			</div>
+		</div>
+		
+		<div id="share" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="mui-table-view aa mui-table-view-cell">
+				<div class="top">分享至</div>
+				<div class="bott">
+					<div>
+						<div class="shares" name="微信">
+							<img src="../img/wechat.png" alt="" />
+						</div>
+						<span>微信</span>
+					</div>
+					<div>
+						<div class="shares" name="QQ">
+							<img src="../img/qq.png" alt="" />
+						</div>
+						<span>QQ</span>
+					</div>
+					<div>
+						<div class="shares" name="朋友圈">
+							<img src="../img/friendcircle.png" alt="" />
+						</div>
+						<span>朋友圈</span>
+					</div>
+					<div>
+						<div class="shares" name="空间">
+							<img src="../img/room.png" alt="" />
+						</div>
+						<span>QQ空间</span>
+					</div>
+				</div>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#forward"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/rem.js"></script>
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script> 
+		<script type="text/javascript">
+			mui.init({
+				 subpages:[{
+				      url:'txtDetail.html',//下拉刷新内容页面地址
+				      id:'txtDetail.html',//内容页面标志
+				      styles:{
+				        top:'44px',//内容页面顶部位置,需根据实际页面布局计算，若使用标准mui导航，顶部默认为48px；
+
+				      }
+			    }]
+			  })
+			 
+			mui.plusReady(
+				mui('body').on('tap', '.mui-popover-action li>a', function() {
+					var a = this,
+						parent;
+					//根据点击按钮，反推当前是哪个actionsheet
+					for(parent = a.parentNode; parent != document.body; parent = parent.parentNode) {
+						if(parent.classList.contains('mui-popover-action')) {
+							break;
+						}
+					}
+					//关闭actionsheet
+					mui('#' + parent.id).popover('toggle');
+				}), 	
+			)
+			 
+		</script>
+	</body>
+	
+</html>

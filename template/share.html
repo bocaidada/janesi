@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name='apple-itunes-app' content='app-id=1332557222'>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.box{
+				width: 100%;
+				position: relative;
+			}
+			.box>img{
+				width: 100%;
+			}
+			.but{
+				width: 25%;
+				height: 0.68rem;
+				position: absolute;
+				top: 5.6rem;
+				left: 50%;
+				border-radius:0.15rem;
+				transform: translateX(-50%);
+				box-shadow: 0.01rem 0.01rem 0.01rem rgba(0,0,0,.2);
+				overflow: hidden;
+			}
+			.but>img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<!--<div class="mui-scroll-wrapper">-->
+		<!--<div class="mui-scroll">-->
+			<div class="box">
+		    	<img src="../img/sh.jpg" alt="" />
+		    </div>
+		    <div class="but">
+		    	<img src="../img/sh1.png" alt="" />
+		    </div>
+		<!--</div>-->
+	<!--</div>-->
+    
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/rem.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.005,
+				indicators: false
+			});
+			mui.plusReady(
+				document.querySelector('.but').addEventListener('tap',function(){
+					location.href='https://itunes.apple.com/cn/app/id1332557222'
+				})
+			)
+		</script>
+	</body>
+
+</html>
